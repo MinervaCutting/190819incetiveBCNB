@@ -47,7 +47,7 @@ row_spec(0, bold = T, color = "white", background = "black")  %>%
 _**Barcelona**_ {data-width=850}
 -------------------------------------------
 
-### Budget as of Agust 19th, 2020
+### Budget as of Agust 20th, 2020
 
 <br><br>
 
@@ -55,7 +55,7 @@ _**Barcelona**_ {data-width=850}
 
 ```{r budget_table}
 
-budget <- read_excel("rooming.xlsx", sheet = "bud", range = "B13:G44") 
+budget <- read_excel("rooming.xlsx", sheet = "bud", range = "B13:G43") 
 budget <- sapply(budget, as.character)
 budget[is.na(budget)] <- ""
 budget <- data.frame(budget, stringsAsFactors = FALSE)
