@@ -55,7 +55,7 @@ _**Barcelona**_ {data-width=850}
 
 ```{r budget_table}
 
-budget <- read_excel("rooming.xlsx", sheet = "bud", range = "B13:G45") 
+budget <- read_excel("rooming.xlsx", sheet = "bud", range = "B13:G44") 
 budget <- sapply(budget, as.character)
 budget[is.na(budget)] <- ""
 budget <- data.frame(budget, stringsAsFactors = FALSE)
@@ -73,80 +73,4 @@ class(budget$total) <- "numeric"
 tables(budget)
 
 ```
-
-_**Barcelona**_{data-width=150}
--------------------------------------------
-
-```{r budget_sorting}
-
-
-budget <- budget[-nrow(budget),]
-
-bud_transfers <- budget %>% filter(category == "transfer") %>% summarise(total= sum(total)) %>% prettyNum(big.mark = ",")
-
-bud_activity <- budget %>% filter(category == "activity") %>% summarise(total= sum(total))%>% prettyNum(big.mark = ",")
-
-bud_hotel <- budget %>% filter(category == "hotel") %>% summarise(total = sum(total))%>% prettyNum(big.mark = ",")
-
-bud_restaurant <- budget %>% filter(category == "restaurant") %>%  summarise(total = sum(total)) %>% prettyNum(big.mark = ",")
-
-bud_audiovisuals <- budget %>% filter(category == "working") %>%  summarise(total = sum(total)) %>% prettyNum(big.mark = ",")
-
-```
-
-<br>
-
-### hotel
-
-```{r hotel_box}
-
-valueBox(bud_hotel, 
-         icon = "fa-h-square", 
-         caption = "Euros in Hotel",
-         color = "#fcffc2")
-```
-
-
-### activities
-
-```{r activities_box}
-
-valueBox(bud_activity, 
-         icon = "fa-walking", 
-         caption = "Euros in activities",
-         color = "#b6fcd5")
-```
-
-
-### transfers
-
-```{r transfer_box}
-
-valueBox(bud_transfers, icon = "fa-shuttle-van",
-         caption = "Euros in transfers",
-         color = "#c6e2ff")
-
-```
-
-### restaurants
-
-```{r restaurant_box}
-
-valueBox(bud_restaurant, 
-         icon = "fa-utensils", 
-         caption = "Euros in offsite restaurants",
-         color = "#fdc9d9")
-```
-
-
-### AV
-
-```{r aavv_box}
-
-valueBox(bud_audiovisuals, 
-         icon = "fa-fast-forward", 
-         caption = "Euros in AV",
-         color = "#b6a3ea")
-```
-
 
